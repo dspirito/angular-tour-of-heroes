@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
+import { Hero } from './hero';
 
-export class Hero {
-	id: number;
-	name:string;
-}
 @Component({
   template:`
   <h1>{{title}}</h1>
@@ -14,14 +11,7 @@ export class Hero {
   		<span class="badge">{{hero.id}}</span> {{hero.name}}
   	</li>
   </ul>
-  <div *ngIf="selectedHero">
-  	<h2>{{selectedHero.name}} details!</h2>
-  	<div><label>id: </label>{{selectedHero.id}}</div>
-  	<div>
-  		<label>name: </label>
-  		<input [(ngModel)]="selectedHero.name" placeholder="name">
-  	</div>
-  </div>
+  <hero-detail [hero]="selectedHero"></hero-detail>
   `,
   selector: 'app-root',
   //styleUrls: ['./app.component.css']
@@ -80,6 +70,7 @@ export class AppComponent {
   title = 'Tour of Heroes';
   selectedHero : Hero;
   heroes = HEROES;
+
   onSelect(hero : Hero): void {
   	this.selectedHero = hero;
   }
